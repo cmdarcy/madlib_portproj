@@ -13,23 +13,10 @@ const dictionary = {
 
 const madlibgen = () => {
     let madlibResult = madlibBase[randNum(madlibBase.length)]
-    while (madlibResult.includes('adj')){
-        madlibResult = madlibResult.replace('adj', genRandElement(dictionary.adjLib))
-    }
-    while (madlibResult.includes('verb')){
-        madlibResult = madlibResult.replace('verb', genRandElement(dictionary.verbLib))
-    }
-    while (madlibResult.includes('noun')){
-        madlibResult = madlibResult.replace('noun', genRandElement(dictionary.nounLib))
-    }
-    while (madlibResult.includes('adv')){
-        madlibResult = madlibResult.replace('adv', genRandElement(dictionary.advLib))
-    }
-    while (madlibResult.includes('place')){
-        madlibResult = madlibResult.replace('place', genRandElement(dictionary.placeLib))
-    }
-    while (madlibResult.includes('cartoon')){
-        madlibResult = madlibResult.replace('cartoon', genRandElement(dictionary.cartoonLib))
+    for (const key in dictionary) {
+        while (madlibResult.includes(key.slice(0, -3))){
+            madlibResult = madlibResult.replace(key.slice(0, -3), genRandElement(dictionary[key]))
+        }
     }
     return madlibResult;
 }
